@@ -45,13 +45,13 @@ type Releases struct {
 type Screenshot struct {
 	Type    string `xml:"type,attr"`
 	Caption string `xml:"caption"`
-	Image   string `xml:"image"`
+	Image   ScreenshotImage `xml:"image"`
 }
 
 type ScreenshotImage struct {
 	Type   string `xml:"type,attr"`
-	Width  string `xml:"width"`
-	Height string `xml:"height"`
+	Width  string `xml:"width,attr"`
+	Height string `xml:"height,attr"`
 	Url    string `xml:",innerxml"`
 }
 
@@ -64,10 +64,16 @@ type Description struct {
 	Items []Tag `xml:",any"`
 }
 
+type Launchable struct {
+	Type string `xml:"type,attr"`
+	DesktopId string `xml:",innerxml"`
+}
+
 type component struct {
 	Type            string        `xml:"type,attr"`
 	Id              string        `xml:"id"`
 	Provides        Provides      `xml:"provides"`
+	Launchable		Launchable	  `xml:"launchable"`
 	Name            string        `xml:"name"`
 	DevName         string        `xml:"developer_name"`
 	Summary         string        `xml:"summary"`
